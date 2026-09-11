@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form</title>
+  <style>
+      body { font-family: Arial, sans-serif; 
+          line-height:1.6; 
+          margin: 20px; }
+    h1{color:#232326; text-align: center;}
+    .topnav {
+  text-align: center;
+    background-color:#232326 ;}
 
+.topnav a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  font-size:18px;}
+
+    footer {
+  text-align: center;
+  color: white;
+  background-color: #232326 ;
+
+}
+</style>
+</head>
+   <body>
+  <main>
+  <h1>Contact Form</h1>
+      <div class="topnav" >
+      <a href='index.html'>Home</a>
+      <a href='assignments.html'>My Assignments</a>
+      <a href='about.html'>About Me</a>
+    </div>
+  
+      </main>
+         <footer>
+      <p> Created by Krista Payne</p>
+    </footer>
+  </body>
+
+</html>
