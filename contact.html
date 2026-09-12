@@ -34,17 +34,28 @@
 
             if (!ValidateNotBlank(fname, "First Name"))
                 return false;
-          
-          
+                
            var lname = form["lname"].value;
 
             if (!ValidateNotBlank(lname, "Last Name"))
                 return false;
           
-            var address = form["address"].value;
+           var street = form["street"].value;
 
-
-            if (!ValidateNotBlank(address, "Address"))
+            if (!ValidateNotBlank(street, "Street Address"))
+                return false;
+              
+          
+        var city = form["city"].value;
+            if (!ValidateNotBlank(city, "City"))
+                return false;
+                
+        var state = form["state"].value;
+            if (!ValidateNotBlank(state, "State"))
+                return false;
+          
+                 var zip = form["zip"].value;
+            if (!ValidateNotBlank(zip, "Zip Code"))
                 return false;
 
             var phone = form["phone"].value;
@@ -66,11 +77,12 @@
             var message = form["message"].value;
             if (!ValidateNotBlank(message, "Message"))
                 return false;
-          	var security = form["security"].value;
+          
+          	var security = form.elements["security"].value;
            if (!ValidateNotBlank(security, "Security Question"))
             return false;
 
-           if (security.trim() != "5") {
+           if (security.trim() !== "5") {
           alert("Incorrect");
           return false;
       }
@@ -115,7 +127,10 @@ function Confirmation(event) {
     var summaryHTML = 
         "<strong>First Name:</strong> " + form["fname"].value + "<br>" +
         "<strong>Last Name:</strong> " + form["lname"].value + "<br>" +
-        "<strong>Address:</strong> " + form["address"].value + "<br>" +
+        "<strong> Street Address:</strong> " + form["street"].value + "<br>" + 
+          "<strong> City:</strong> " + form["city"].value + "<br>" + 
+          "<strong> State:</strong> " + form["state"].value + "<br>" + 
+        "<strong> Zip Code:</strong> " + form["zip"].value + "<br>" + 
         "<strong>Phone:</strong> " + form["phone"].value + "<br>" +
         "<strong>Email:</strong> " + form["email"].value + "<br>" +
         "<strong>Birthdate:</strong> " + form["bday"].value + "<br>" +
@@ -167,16 +182,25 @@ function editForm() {
        <input type="text" name="lname"
          placeholder= "Last Name"/>
       <br>
-         Input Address:
-        <input type="text" name="address" />
-        <br />
+          Input Street Address
+   <input type="text" name="street" />
+    <br />      
+ Input City
+   <input type="text" name="city" />
+    <br />   
+    Input State
+   <input type="text" name="state" />
+    <br />  
+    Input Zip Code
+   <input type="text" name="zip" />
+    <br />   
          Input Phone Number:
         <input type="text" name="phone" 
           placeholder="(000) 000-0000"/>
         <br />
          Input Email Address:
         <input type="email" name="email"
-          placeholder="Email"/>
+         placeholder="you@example.com"/>
         <br />
         Input Birthdate:
         <input type="date" name="bday" placeholder="mm/dd/yyyy" />
@@ -194,7 +218,7 @@ function editForm() {
 
 
     </form> 
-    <div id="reviewSection" style="display:none; padding: 20px;  ">
+    <div id="reviewSection" style="display:none; padding:20px;">
     <h2>Review Your Information</h2>
     <p id="summaryText"></p>
     <button type="button" onclick="submitForm()">Confirm and Submit</button>
