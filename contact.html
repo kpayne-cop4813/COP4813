@@ -134,7 +134,8 @@ function Confirmation(event) {
         "<strong>Phone:</strong> " + form["phone"].value + "<br>" +
         "<strong>Email:</strong> " + form["email"].value + "<br>" +
         "<strong>Birthdate:</strong> " + form["bday"].value + "<br>" +
-        "<strong>Message:</strong> " + form["message"].value;
+        "<strong>Message:</strong> " + form["message"].value +"<br>"+
+   "<strong>Security Answer:</strong> " + form["security"].value;
 
 document.getElementById("summaryText").innerHTML = summaryHTML;
       document.getElementById("inputForm").style.display = "none";
@@ -169,6 +170,7 @@ function editForm() {
 <br>
 
     <form name="inputForm"
+      id="inputForm"
       onsubmit="return 
           Confirmation(event);" 
           method="post"
