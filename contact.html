@@ -22,9 +22,70 @@
   text-align: center;
   color: white;
   background-color: #232326 ;
-
 }
 </style>
+        <script type="text/javascript">
+
+        function ValidateForm()
+        {
+            var form = document.forms["inputForm"];
+            var fname = form["fname"].value;
+
+            if (!ValidateNotBlank(fname, "Name"))
+                return false;
+                var address = form["address"].value;
+
+            if (!ValidateNotBlank(address, "Address"))
+                return false;
+
+            var phone = form["phone"].value;
+            if (!ValidateNotBlank(phone, "Phone Number"))
+                return false;
+
+            var email = form["email"].value;
+            if (!ValidateNotBlank(email, "Email Address"))
+                return false;
+
+            var bday = document.forms["inputForm"]["bday"].value;
+
+            if (!ValidateNotBlank(bday, "Date"))
+                return false;
+
+            if (!ValidateDate())
+                return false;
+
+            var message = form["message"].value;
+            if (!ValidateNotBlank(message, "Message"))
+                return false;
+
+      return true;
+        }
+
+        function ValidateNotBlank(val, message) {
+            if (val == null || val.trim() == "") {
+                alert("Must enter a value for " + message);
+                return false;
+            }
+        return true;
+        }
+
+
+        function ValidateDate()
+        {
+            var d = document.forms["inputForm"]["bday"].value;
+            var d_as_date = new Date(d);
+            var today = new Date();
+
+            if (d_as_date > today)
+            {
+                alert("The date entered is after today");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+  
 </head>
    <body>
   <main>
@@ -34,11 +95,39 @@
       <a href='assignments.html'>My Assignments</a>
       <a href='about.html'>About Me</a>
     </div>
-  
+ 
+<br>
+
+    <form name="inputForm"
+          onsubmit="return ValidateForm();"
+          method="post"
+          action="mailto:krista_payne@daytonastate.edu">
+
+        Input Full Name:
+        <input type="text" name="fname" />
+        <br />
+         Input Address:
+        <input type="text" name="address" />
+        <br />
+         Input Phone Number:
+        <input type="text" name="phone" />
+        <br />
+         Input Email Address:
+        <input type="email" name="email" />
+        <br />
+        Input Birthdate:
+        <input type="date" name="bday" placeholder="mm/dd/yyyy" />
+        <br />
+         Input Message:
+        <input type="text" name="message" />
+        <br />
+
+        <input type="submit" value="submit" />
+
+    </form> 
       </main>
          <footer>
       <p> Created by Krista Payne</p>
     </footer>
   </body>
-
 </html>
