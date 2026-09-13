@@ -24,7 +24,7 @@
   background-color: #232326 ;
 }
 </style>
-        <script type="text/javascript">
+        <script>
 
         function ValidateForm()
         {
@@ -144,10 +144,10 @@ document.getElementById("summaryText").innerHTML = summaryHTML;
       return false;
     }
 
-  function submitForm()
-    {
-      document.forms["inputForm"].submit();
-    }
+function submitForm() {
+    document.getElementById("inputForm").submit();
+}
+          
 function editForm() {
       
       document.getElementById("inputForm").style.display = "block";
@@ -179,39 +179,39 @@ function editForm() {
         Input First Name:
         <input type="text" name="fname"
           placeholder="First Name"/>
-        <br />
+        <br>
       Input Last Name:
        <input type="text" name="lname"
          placeholder= "Last Name"/>
       <br>
           Input Street Address
    <input type="text" name="street" />
-    <br />      
+    <br>      
  Input City
    <input type="text" name="city" />
-    <br />   
+    <br>   
     Input State
    <input type="text" name="state" />
-    <br />  
+    <br>  
     Input Zip Code
    <input type="text" name="zip" />
-    <br />   
+    <br>   
          Input Phone Number:
         <input type="text" name="phone" 
           placeholder="(000) 000-0000"/>
-        <br />
+        <br>
          Input Email Address:
         <input type="email" name="email"
          placeholder="you@example.com"/>
-        <br />
+        <br>
         Input Birthdate:
-        <input type="date" name="bday" placeholder="mm/dd/yyyy" />
-        <br />
+        <input type="date" name="bday" />
+        <br>
          Input Message:
           <textarea name="message"
                   rows="5"
                   cols="40"></textarea>
-        <br />
+        <br>
  Security Question:What is 2 + 3?
         <input type="text"
                name="security" />
