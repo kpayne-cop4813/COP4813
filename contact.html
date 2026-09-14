@@ -29,7 +29,7 @@ body { font-family: Arial, sans-serif;
   padding: 14px 16px;
   font-size:18px;}
 
-    footer {
+footer {
   text-align: center;
   color: white;
   background-color: #232326 ;
@@ -72,7 +72,10 @@ body { font-family: Arial, sans-serif;
             var phone = form["phone"].value;
             if (!ValidateNotBlank(phone, "Phone Number"))
                 return false;
+             if (!ValidatePhone())
+                return false;
 
+          
             var email = form["email"].value;
             if (!ValidateNotBlank(email, "Email Address"))
                 return false;
@@ -124,6 +127,17 @@ body { font-family: Arial, sans-serif;
             return true;
         }
 
+      function ValidatePhone() {
+    var phone = document.forms["inputForm"]["phone"].value;
+   
+    var cleanedPhone = phone.replace(/\D/g, '');
+    
+    if (cleanedPhone.length !== 10) {
+        alert("Please enter a valid 10-digit phone number.");
+        return false;
+    }
+    return true;
+}
 
 
 function Confirmation(event) {
