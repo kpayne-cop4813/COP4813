@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Plotting</title>
+  <link rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/12.4.0/css/highcharts.css">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
    <style>
     
   body { font-family: Arial, sans-serif;   
@@ -34,12 +37,87 @@ main {
 </head>
    <body>
   <main>
-  <h1>Javascipt Calculator with Plotting Capability</h1>
-    <p> Assignment 4 </p>
+  <h1>Javascipt Calculator with Plotting </h1>
+    <p>       
+      <div class="calculator">
+
+            <label for="input">Input Number 1-10</label>
+
+            <input
+                type="text"
+                id="input"
+                value="10"
+            
+            >
+
+            <button onclick="calculate()">
+                Click
+            </button>
+
+        </div>
+
+        <div id="results"></div>
+
+        <div id="chart"></div> </p>
       </main>
          <footer>
       <p> Created by Krista Payne</p>
     </footer>
+     <script>
+     function calculate() {
+    let input = parseInt(document.getElementById("input").value);
+
+    document.getElementById("results").innerHTML = "Input: " + input;
+
+    makePlot(input);
+}
+
+function factorial(n) {
+    let result = 1;
+
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+
+    return result;
+}
+
+
+    function makePlot(input) {
+
+    let nValues = [];
+    let oLogN = []; let oN = []; let oNLogN = []; let oNSquared = []; let oTwoN = []; let oFactorial = [];
+
+    for (let i = 1; i <= input; i++) {
+        nValues.push(i);
+        oLogN.push(Math.log2(i));
+        oN.push(i);
+        oNLogN.push(i * Math.log2(i));
+        oNSquared.push(i * i);
+        oTwoN.push(Math.pow(2, i));
+        oFactorial.push(factorial(i));
+        }
+  
+  Highcharts.chart('chart', {
+        xAxis: { categories: nValues, title: { text: 'Input Size (n)' } },
+        yAxis: { title: { text: 'Growth' } },
+         title: { text: 'Big-O Notations'
+    },
+        series: [
+            { name: 'O(log n)', data: oLogN },
+            { name: 'O(n)', data: oN },
+            { name: 'O(n log n)', data: oNLogN },
+            { name: 'O(n^2)', data: oNSquared },
+            { name: 'O(2^n)', data: oTwoN },
+            { name: 'O(n!)', data: oFactorial },
+        ]
+
+    });
+  }
+window.onload = function() {
+            makePlot(10);
+        };
+     </script>
   </body>
 
 </html>
