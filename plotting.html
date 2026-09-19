@@ -40,14 +40,24 @@ main {
   <h1>Javascipt Calculator with Plotting </h1>
     <p>       
       <div class="calculator">
-
-            <label for="input">Input Number 1-10</label>
+   <label for="minimum">
+                Minimum:
+            </label>
 
             <input
                 type="text"
-                id="input"
+                id="minimum"
+                value="1"
+            >
+
+            <label for="maximum">
+                Maximum:
+            </label>
+
+            <input
+                type="text"
+                id="maximum"
                 value="10"
-            
             >
 
             <button onclick="calculate()">
@@ -59,18 +69,33 @@ main {
         <div id="results"></div>
 
         <div id="chart"></div> </p>
-      </main>
-         <footer>
+  </main>
+    <footer>
       <p> Created by Krista Payne</p>
     </footer>
+
+
+     
      <script>
-     function calculate() {
-    let input = parseInt(document.getElementById("input").value);
+function calculate() {
 
-    document.getElementById("results").innerHTML = "Input: " + input;
+            let minimum = parseInt(
+                document.getElementById("minimum").value
+            );
 
-    makePlot(input);
-}
+            let maximum = parseInt(
+                document.getElementById("maximum").value
+            );
+
+
+
+
+            document.getElementById("results").innerHTML =
+                "Input range: " + minimum + " to " + maximum;
+
+
+            makePlot(minimum, maximum);
+        }
 
 function factorial(n) {
     let result = 1;
@@ -101,8 +126,6 @@ function factorial(n) {
   Highcharts.chart('chart', {
         xAxis: { categories: nValues, title: { text: 'Input Size (n)' } },
         yAxis: { title: { text: 'Growth' } },
-         title: { text: 'Big-O Notations'
-    },
         series: [
             { name: 'O(log n)', data: oLogN },
             { name: 'O(n)', data: oN },
@@ -115,7 +138,7 @@ function factorial(n) {
     });
   }
 window.onload = function() {
-            makePlot(10);
+            makePlot(1,10);
         };
      </script>
   </body>
