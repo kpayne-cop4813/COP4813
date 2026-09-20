@@ -126,6 +126,7 @@ function factorial(n) {
   Highcharts.chart('chart', {
         xAxis: { categories: nValues, title: { text: 'Input Size (n)' } },
         yAxis: { title: { text: 'Growth' } },
+        title: {text: 'Big-O Notation'},
         series: [
             { name: 'O(log n)', data: oLogN },
             { name: 'O(n)', data: oN },
