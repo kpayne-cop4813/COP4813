@@ -37,7 +37,7 @@ main {
 </head>
    <body>
   <main>
-  <h1>Javascipt Calculator with Plotting </h1>
+  <h1>JavaScipt Calculator with Plotting </h1>
     <p>       
       <div class="calculator">
    <label for="minimum">
@@ -108,12 +108,12 @@ function factorial(n) {
 }
 
 
-    function makePlot(input) {
+    function makePlot(minimum, maximum) {
 
     let nValues = [];
     let oLogN = []; let oN = []; let oNLogN = []; let oNSquared = []; let oTwoN = []; let oFactorial = [];
 
-    for (let i = 1; i <= input; i++) {
+    for (let i = minimum; i <= maximum; i++) {
         nValues.push(i);
         oLogN.push(Math.log2(i));
         oN.push(i);
