@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plotting</title>
+  <link rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/12.4.0/css/highcharts.css">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+   <style>
+    
+  body { font-family: Arial, sans-serif;   
+          line-height:1.6; 
+         margin: 0;
+      padding: 0;
+       background-color: #f7f7f8}
+    
+    h1 { 
+      color:#232326; text-align: center; margin-top: 20px;
+      }
+    
+main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+ padding: 0 20px;  border-radius: 8px;  
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
 
+    footer {
+  text-align: center;
+  color: white;
+  background-color: #232326 ;
+  padding: 10px 0; 
+  margin-top: 40px;
+}
+  </style>
+</head>
+   <body>
+      <main>
+  <h1>Spirograph</h1></h1>
+   
+
+<canvas id="myCanvas" width="400" height="400"
+style="border:1px solid #d3d3d3;"></canvas>
+<br>
+<button onclick="drawSpirograph();">Draw</button>
+        
+  </main>
+          
+   <footer>
+      <p> Created by Krista Payne</p>
+    </footer>
+
+     <script>
+       function Spirograph(R, r, O) {
+
+this.R = R;
+this.r = r;
+this.O = O;
+
+this.draw = draw;
+
+function draw(ctx) {
+
+var centerX = 200;
+var centerY = 200;
+
+var t = 0;
+
+ctx.strokeStyle = "purple";
+ctx.beginPath();
+
+var timer = setInterval(function() {
+
+var x1 = Math.floor(centerX
++ (R + r) * Math.cos(t)
+- (r + O) * Math.cos(((R + r) / r) * t));
+
+var y1 = Math.floor(centerY
++ (R + r) * Math.sin(t)
+- (r + O) * Math.sin(((R + r) / r) * t));
+
+if (t == 0) {
+ctx.moveTo(x1, y1);
+} else {
+ctx.lineTo(x1, y1);
+}
+
+ctx.stroke();
+
+t += 0.05;
+
+if (t >= 50) {
+clearInterval(timer);
+}
+
+}, 5);
+}
+}
+
+function drawSpirograph() {
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+ctx.clearRect(0, 0, c.width, c.height);
+
+var R = Math.floor(Math.random() * 50) + 100;
+var r = Math.floor(Math.random() * 30) + 20;
+var O = Math.floor(Math.random() * 20) + 5;
+
+var mySpirograph = new Spirograph(R, r, O);
+
+mySpirograph.draw(ctx);
+}
+     </script>
+
+
+
+
+</html
