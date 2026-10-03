@@ -4,7 +4,7 @@
       "commonName": "Golden Pothos",
       "scientificName": "Epipremnum aureum",
       "waterSchedule": "Every 1–2 weeks; water when the top 1–2 inches of soil is dry",
-      "lightRequirements": "Bright, indirect light; tolerates medium to low light",
+      "lightRequirements": "Bright, indirect light",
       "fertilizerSchedule": "Every 4–6 weeks during spring and summer"
     },
     {
@@ -18,27 +18,27 @@
       "commonName": "Snake Plant",
       "scientificName": "Dracaena trifasciata",
       "waterSchedule": "Every 2–3 weeks; allow soil to dry between waterings",
-      "lightRequirements": "Bright, indirect light; tolerates low light",
+      "lightRequirements": "Bright, indirect light",
       "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
     },
     {
       "commonName": "Aloe",
       "scientificName": "Aloe vera",
-      "waterSchedule": "Every 2–3 weeks; allow soil to dry completely",
-      "lightRequirements": "Bright light; some direct sunlight",
+      "waterSchedule": "Every 2–3 weeks; allow soil to dry",
+      "lightRequirements": "Bright light",
       "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
     },
     {
       "commonName": "ZZ Plant",
       "scientificName": "Zamioculcas zamiifolia",
       "waterSchedule": "Every 2–3 weeks; allow soil to dry between waterings",
-      "lightRequirements": "Bright, indirect light; tolerates low light",
+      "lightRequirements": "Bright, indirect light",
       "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
     },
     {
       "commonName": "Elephant's Foot",
       "scientificName": "Beaucarnea recurvata",
-      "waterSchedule": "Every 2–3 weeks; allow soil to dry completely",
+      "waterSchedule": "Every 2–3 weeks; allow soil to dry",
       "lightRequirements": "Bright light; some direct sunlight",
       "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
     },
@@ -59,7 +59,7 @@
     {
       "commonName": "African Milk Tree",
       "scientificName": "Euphorbia trigona",
-      "waterSchedule": "Every 2–3 weeks; allow soil to dry completely",
+      "waterSchedule": "Every 2–3 weeks; allow soil to dry",
       "lightRequirements": "Bright light; some direct sunlight",
       "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
     },
