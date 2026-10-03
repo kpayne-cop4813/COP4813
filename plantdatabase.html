@@ -25,8 +25,8 @@
             <tr>
                 <th>Plant</th>
                 <th>Scientific Name</th>
-                <th>Light</th>
                 <th>Water</th>
+                <th>Light</th> 
                 <th>Fertilizer</th>
             </tr>
         </thead>
@@ -47,11 +47,11 @@
                     const row = document.createElement("tr");
 
                     row.innerHTML = `
-                        <td>${plant.name}</td>
+                        <td>${plant.commonName}</td>
                         <td>${plant.scientificName}</td>
-                        <td>${plant.light}</td>
-                        <td>${plant.watering}</td>
-                        <td>${plant.fertilizer}</td>
+                        <td>${plant.waterSchedule}</td>
+                        <td>${plant.lightRequirements}</td>
+                        <td>${plant.fertilizerSchedule}</td>
                     `;
 
                     table.appendChild(row);
