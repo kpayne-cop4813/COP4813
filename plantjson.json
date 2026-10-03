@@ -1,0 +1,95 @@
+{
+  "plants": [
+    {
+      "commonName": "Golden Pothos",
+      "scientificName": "Epipremnum aureum",
+      "waterSchedule": "Every 1–2 weeks; water when the top 1–2 inches of soil is dry",
+      "lightRequirements": "Bright, indirect light; tolerates medium to low light",
+      "fertilizerSchedule": "Every 4–6 weeks during spring and summer"
+    },
+    {
+      "commonName": "Monstera",
+      "scientificName": "Monstera deliciosa",
+      "waterSchedule": "Every 1–2 weeks; water when the top 1–2 inches of soil is dry",
+      "lightRequirements": "Bright, indirect light",
+      "fertilizerSchedule": "Every 4–6 weeks during spring and summer"
+    },
+    {
+      "commonName": "Snake Plant",
+      "scientificName": "Dracaena trifasciata",
+      "waterSchedule": "Every 2–3 weeks; allow soil to dry between waterings",
+      "lightRequirements": "Bright, indirect light; tolerates low light",
+      "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
+    },
+    {
+      "commonName": "Aloe",
+      "scientificName": "Aloe vera",
+      "waterSchedule": "Every 2–3 weeks; allow soil to dry completely",
+      "lightRequirements": "Bright light; some direct sunlight",
+      "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
+    },
+    {
+      "commonName": "ZZ Plant",
+      "scientificName": "Zamioculcas zamiifolia",
+      "waterSchedule": "Every 2–3 weeks; allow soil to dry between waterings",
+      "lightRequirements": "Bright, indirect light; tolerates low light",
+      "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
+    },
+    {
+      "commonName": "Elephant's Foot",
+      "scientificName": "Beaucarnea recurvata",
+      "waterSchedule": "Every 2–3 weeks; allow soil to dry completely",
+      "lightRequirements": "Bright light; some direct sunlight",
+      "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
+    },
+    {
+      "commonName": "Fiddle Leaf Fig",
+      "scientificName": "Ficus lyrata",
+      "waterSchedule": "Every 1–2 weeks; water when the top 2 inches of soil is dry",
+      "lightRequirements": "Bright, indirect light",
+      "fertilizerSchedule": "Every 4–6 weeks during spring and summer"
+    },
+    {
+      "commonName": "Rubber Plant",
+      "scientificName": "Ficus elastica",
+      "waterSchedule": "Every 1–2 weeks; water when the top 1–2 inches of soil is dry",
+      "lightRequirements": "Bright, indirect light",
+      "fertilizerSchedule": "Every 4–6 weeks during spring and summer"
+    },
+    {
+      "commonName": "African Milk Tree",
+      "scientificName": "Euphorbia trigona",
+      "waterSchedule": "Every 2–3 weeks; allow soil to dry completely",
+      "lightRequirements": "Bright light; some direct sunlight",
+      "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
+    },
+    {
+      "commonName": "Miniature Umbrella Tree",
+      "scientificName": "Schefflera arboricola",
+      "waterSchedule": "Every 1–2 weeks; water when the top 1–2 inches of soil is dry",
+      "lightRequirements": "Bright, indirect light",
+      "fertilizerSchedule": "Every 4–6 weeks during spring and summer"
+    },
+    {
+      "commonName": "Jade Plant",
+      "scientificName": "Crassula ovata",
+      "waterSchedule": "Every 2–3 weeks; allow soil to dry completely",
+      "lightRequirements": "Bright light; some direct sunlight",
+      "fertilizerSchedule": "Every 6–8 weeks during spring and summer"
+    },
+    {
+      "commonName": "Chinese Banyan",
+      "scientificName": "Ficus microcarpa",
+      "waterSchedule": "Every 1–2 weeks; water when the top 1–2 inches of soil is dry",
+      "lightRequirements": "Bright, indirect light",
+      "fertilizerSchedule": "Every 4–6 weeks during spring and summer"
+    },
+    {
+      "commonName": "Maranta",
+      "scientificName": "Maranta leuconeura",
+      "waterSchedule": "Every 5–7 days; keep soil lightly moist",
+      "lightRequirements": "Medium to bright, indirect light",
+      "fertilizerSchedule": "Every 4 weeks during spring and summer"
+    }
+  ]
+}
