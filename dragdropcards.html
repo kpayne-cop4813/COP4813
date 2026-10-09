@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Drag Drop Cards</title>
-   <style>
+  
+<style>
 
     
   body { font-family: Arial, sans-serif;   
@@ -12,40 +13,42 @@
       padding: 0;
        background-color: #f7f7f8}
 
-main {
+  main {
       max-width: 800px;
       margin: 30px auto;
       padding: 0 20px;
- padding: 0 20px;  border-radius: 8px;  
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
+      padding: 0 20px;  border-radius: 8px;  
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+       }
 
-    footer {
-  text-align: center;
-  color: white;
-  background-color: #232326 ;
-  padding: 10px 0; 
-  margin-top: 40px;
-}
+  footer {
+   text-align: center;
+   color: white;
+   background-color: #232326 ;
+   padding: 10px 0; 
+   margin-top: 40px;
+ }
 
 .card {
-    width: 150px;
+    width: 50px;
     height: auto;
     cursor: grab;
+    margin: 10px;
 }
 
-     
 .drop {
     width: 200px;
-    height: 100px;
+    min-height: 120px;
     background-color: purple;
     color: white;
     margin-top: 20px;
     margin-bottom: 30px;
     text-align: center;
-    line-height: 100px;
+    line-height: normal;
+    padding: 10px;
+    box-sizing: border-box;
 }
-}
+
      
   </style>
 </head>
@@ -63,9 +66,12 @@ main {
          <footer>
       <p> Created by Krista Payne</p>
     </footer>
+
+     
      <script>
 
 
+       
 function randomCard() {
    return Math.floor(Math.random() * numberOfCardsInDeck);  
 }
@@ -84,6 +90,7 @@ for (var i = 0; i < suits.length; i++) {
     }
 }
 
+      numberOfCardsInDeck = cardsInDeck.length;
 
 function init() {
   $('.drop').droppable( {
@@ -91,7 +98,7 @@ function init() {
   } );   
 }
 
-
+init();
 
 function dealCard() {
 
@@ -99,12 +106,14 @@ function dealCard() {
     var cardName = cardsInDeck[c];
 
 
-    var img = document.createElement("img");
-    img.src = "C1.png";
-    img.id = "C1" ;
-    document.body.appendChild(img);
+   img.src = cardName + ".png";
+img.id = cardName;
+img.className = "card";
+document.body.appendChild(img);
    
     $('img').draggable();
+
+  removeCard(c);
 
 }
 
@@ -127,7 +136,8 @@ function removeCard(c)
         cardsInDeck[j] = cardsInDeck[j+1];
     }
     numberOfCardsInDeck--;
-}</script>
+}
+     </script>
   </body>
 
 </html>
