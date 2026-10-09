@@ -28,7 +28,13 @@ main {
   margin-top: 40px;
 }
 
+.card {
+    width: 150px;
+    height: auto;
+    cursor: grab;
+}
 
+     
 .drop {
     width: 200px;
     height: 100px;
@@ -48,7 +54,7 @@ main {
 
     <p> Drag & Drop Cards </p>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <input type="button" value="Deal Card" id="deal" />
 <br/>
 <div id='drop' class='drop'>Drop Here</div>
@@ -57,8 +63,15 @@ main {
          <footer>
       <p> Created by Krista Payne</p>
     </footer>
-     <script>$('#deal').click(function () {
-    dealCard();
+     <script>
+
+
+function randomCard() {
+   return Math.floor(Math.random() * numberOfCardsInDeck);  
+}
+
+       
+$('#deal').click(function () { dealCard();
 });
 
 var cardsInDeck = [];
@@ -78,9 +91,7 @@ function init() {
   } );   
 }
 
-function randomCard() {
-   return Math.floor(Math.random() * numberOfCardsInDeck);  
-}
+
 
 function dealCard() {
 
