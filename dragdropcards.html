@@ -27,17 +27,96 @@ main {
   padding: 10px 0; 
   margin-top: 40px;
 }
+
+
+.drop {
+    width: 200px;
+    height: 100px;
+    background-color: purple;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 100px;
+}
+}
+     
   </style>
 </head>
    <body>
   <main>
 
     <p> Drag & Drop Cards </p>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<input type="button" value="Deal Card" id="deal" />
+<br/>
+<div id='drop' class='drop'>Drop Here</div>
 
       </main>
          <footer>
       <p> Created by Krista Payne</p>
     </footer>
+     <script>$('#deal').click(function () {
+    dealCard();
+});
+
+var cardsInDeck = [];
+var numberOfCardsInDeck = 0;
+var suits = ['C', 'D', 'H', 'S'];
+
+for (var i = 0; i < suits.length; i++) {
+    for (var j = 1; j <= 13; j++) {
+        cardsInDeck.push(suits[i] + j);
+    }
+}
+
+
+function init() {
+  $('.drop').droppable( {
+    drop: handleDropEvent
+  } );   
+}
+
+function randomCard() {
+   return Math.floor(Math.random() * numberOfCardsInDeck);  
+}
+
+function dealCard() {
+
+ var c = randomCard();
+    var cardName = cardsInDeck[c];
+
+
+    var img = document.createElement("img");
+    img.src = "C1.png";
+    img.id = "C1" ;
+    document.body.appendChild(img);
+   
+    $('img').draggable();
+
+}
+
+
+
+function handleDropEvent( event, ui ) {
+  var draggable = ui.draggable;
+  $('#drop').html( ui.draggable.attr('id'));
+    
+}
+
+
+
+
+function removeCard(c)
+{
+
+    for (j=c; j <= numberOfCardsInDeck - 2; j++)
+    {
+        cardsInDeck[j] = cardsInDeck[j+1];
+    }
+    numberOfCardsInDeck--;
+}</script>
   </body>
 
 </html>
