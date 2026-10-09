@@ -49,9 +49,13 @@
     box-sizing: border-box;
 }
 
+  .table-area {
+  padding: 20px 20px 20px 5px; 
+}
      
-  </style>
-</head>
+     
+      </style>
+    </head>
    <body>
   <main>
 
@@ -60,6 +64,8 @@
 <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <input type="button" value="Deal Card" id="deal" />
 <br/>
+    <div class="table-area">
+  <div id="card-container"></div>
 <div id='drop' class='drop'>Drop Here</div>
 
       </main>
@@ -82,6 +88,8 @@ $('#deal').click(function () { dealCard();
 
 var cardsInDeck = [];
 var numberOfCardsInDeck = 0;
+
+       
 var suits = ['C', 'D', 'H', 'S'];
 
 for (var i = 0; i < suits.length; i++) {
@@ -100,21 +108,20 @@ function init() {
 
 init();
 
+
 function dealCard() {
 
- var c = randomCard();
+    var c = randomCard();
     var cardName = cardsInDeck[c];
-
-
-   img.src = cardName + ".png";
-img.id = cardName;
-img.className = "card";
-document.body.appendChild(img);
+    var img = document.createElement("img");
+    img.src = cardName + ".png";
+    img.id = cardName;
+    img.className = "card";
+    document.getElementById("card-container").appendChild(img);
    
     $('img').draggable();
 
-  removeCard(c);
-
+    removeCard(c);
 }
 
 
