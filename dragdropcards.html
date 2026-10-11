@@ -1,20 +1,24 @@
+
 <!DOCTYPE html>
-<html lang= "en">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Drag Drop Cards</title>
+    <meta charset="UTF-8">
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  
-<style>
+    <title>Drag &amp; Drop Cards</title>
 
-    
-  body { font-family: Arial, sans-serif;   
-          line-height:1.6; 
-         margin: 0;
-      padding: 0;
-       background-color: #f7f7f8}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+    <style>
+   
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f8;
+
+        }
 
   main {
       max-width: 800px;
@@ -24,13 +28,76 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
        }
 
-  footer {
-   text-align: center;
-   color: white;
-   background-color: #232326 ;
-   padding: 10px 0; 
-   margin-top: 40px;
- }
+
+      h1 {
+      text-align: center;
+      color: #6b21a8;
+      margin-top: 0;
+    }
+
+
+
+        .button-container {
+            text-align: center;
+            margin: 22px 0;
+        }
+
+    #deal {
+      background-color: #faf5ff ;
+        color: #6b21a8;
+      border: 2px dashed #d8b4fe;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+       transition: background-color 0.2s, border-color 0.2s;
+    }
+
+
+        .game-info {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .stat-card {
+            flex: 1;
+            max-width: 180px;
+            padding: 16px;
+            text-align: center;
+            background-color: #faf5ff;
+            border: 1px solid #e9d5ff;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(107, 33, 168, 0.06);
+        }
+
+        .stat-label {
+            display: block;
+            color: #6b21a8;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .stat-number {
+            display: block;
+            color: #6b21a8;
+            font-size: 1.8rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+.table-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 25px;
+    min-height: 300px;
+}
+
 
 .card {
     width: 75px;
@@ -46,149 +113,195 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
+   
+
 } 
 
-    .drop {
-      width: 220px;
-      min-height: 140px;
-      background-color: #faf5ff;
-      border: 2px dashed #d8b4fe;
-      color: #6b21a8;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 500;
-      transition: background-color 0.2s, border-color 0.2s;
-    }
 
-  .button-container {
-  text-align: center;
-} 
+.drop {
+            position: relative;
+            width: 90px;
+            height: 125px;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            background-color: #faf5ff;
+            border: 2px dashed #d8b4fe;
+            color: #6b21a8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
 
-    #deal {
-      background-color: #faf5ff ;
-        color: #6b21a8;
-      border: 2px dashed #d8b4fe;
-      padding: 10px 20px;
-      font-size: 1rem;
-      font-weight: 500;
-      border-radius: 6px;
-      cursor: pointer;
-       transition: background-color 0.2s, border-color 0.2s;
-    }
-  
-.table-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-top: 25px;
-    min-height: 300px;
-}
 
-      h1 {
-      text-align: center;
-      color: #6b21a8;
-      margin-top: 0;
-    }
-      </style>
-    </head>
-  
+        .drop-hover {
+            background-color: #f3e8ff;
+            border-color: #a855f7;
+            border-style: solid;
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.12);
+        }
+
+        .drop img {
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            display: block;
+            width: 60px;
+            height: auto;
+            max-height: 115px;
+            object-fit: contain;
+            margin: 0 !important;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+  footer {
+   text-align: center;
+   color: white;
+   background-color: #232326 ;
+   padding: 10px 0; 
+   margin-top: 40px;
+ }
+
+    </style>
+</head>
+
 <body>
-  <main>
+    <main>
+        <h1>Drag &amp; Drop Cards</h1>
 
-    <h1> Drag & Drop Cards </h1>
+        
 
-<div class="button-container">
-  <input type="button" value="Deal Card" id="deal">
-</div>
-<br>
-    <div class="table-area">
-  <div id="card-container"></div>
-<div id='drop' class='drop'>Discard Pile</div>
-      </div>
+        <div class="button-container">
+            <input type="button" value="Deal Card" id="deal">
+        </div>
 
-      </main>
-         <footer>
-      <p> Created by Krista Payne</p>
+        <div class="game-info">
+            <div class="stat-card">
+                <span class="stat-label">Cards Left</span>
+                <span class="stat-number" id="remaining">52</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">Discarded</span>
+                <span class="stat-number" id="discarded-count">0</span>
+            </div>
+        </div>
+
+        <div class="table-area">
+            <div id="card-container"></div>
+
+            <div id="drop" class="drop">
+                Discard Pile
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Created by Krista Payne</p>
     </footer>
 
-     
-     <script>
+    <script>
+        var cardsInDeck = [];
+        var numberOfCardsInDeck = 0;
+        var discardedCount = 0;
 
+        var suits = ['C', 'D', 'H', 'S'];
 
-       
-function randomCard() {
-   return Math.floor(Math.random() * numberOfCardsInDeck);  
-}
+        function buildDeck() {
+            cardsInDeck = [];
 
-       
-$('#deal').click(function () { dealCard();
-});
+            for (var i = 0; i < suits.length; i++) {
+                for (var j = 1; j <= 13; j++) {
+                    cardsInDeck.push(suits[i] + j);
+                }
+            }
 
-var cardsInDeck = [];
-var numberOfCardsInDeck = 0;
+            numberOfCardsInDeck = cardsInDeck.length;
+        }
 
-       
-var suits = ['C', 'D', 'H', 'S'];
+        function randomCard() {
+            return Math.floor(Math.random() * numberOfCardsInDeck);
+        }
 
-for (var i = 0; i < suits.length; i++) {
-    for (var j = 1; j <= 13; j++) {
-        cardsInDeck.push(suits[i] + j);
-    }
-}
+        function removeCard(c) {
+            cardsInDeck.splice(c, 1);
+            numberOfCardsInDeck--;
+        }
 
-      numberOfCardsInDeck = cardsInDeck.length;
+        function init() {
+            $('#drop').droppable({
+                accept: '.card',
+                tolerance: 'intersect',
+                hoverClass: 'drop-hover',
+                drop: handleDropEvent
+            });
+        }
 
-function init() {
-  $('.drop').droppable( {
-    drop: handleDropEvent
-  } );   
-}
-
-init();
-
-
-function dealCard() {
-if (numberOfCardsInDeck === 0) {
+        function dealCard() {
+       if (numberOfCardsInDeck === 0) {
         alert("No cards left");
         return;
     }
-    var c = randomCard();
-    var cardName = cardsInDeck[c];
-    var img = document.createElement("img");
-    img.src = cardName + ".png";
-    img.id = cardName;
-    img.className = "card";
-    document.getElementById("card-container").appendChild(img);
-   
-    $(img).draggable();
 
-    removeCard(c);
+            var c = randomCard();
+            var cardName = cardsInDeck[c];
+
+            var img = document.createElement('img');
+            img.src = cardName + '.png';
+            img.alt = cardName + ' playing card';
+            img.id = cardName;
+            img.className = 'card';
+
+
+
+            document.getElementById('card-container').appendChild(img);
+
+            $(img).draggable({
+                revert: 'invalid',
+                stack: '.card',
+                containment: 'document',
+                scroll: true
+            });
+
+            removeCard(c);
+
+            $('#remaining').text(numberOfCardsInDeck);
+
+            if (numberOfCardsInDeck === 0) {
+                $('#deal').prop('disabled', true);
+            }
+        }
+
+function handleDropEvent(event, ui) {
+    $('#drop img').remove();
+
+    ui.draggable
+        .css({
+            position: 'static',
+            transform: 'none'
+        })
+        .appendTo('#drop')
+        .draggable('disable');
+
+    discardedCount++;
+    $('#discarded-count').text(discardedCount);
 }
 
+        buildDeck();
+        init();
+        $('#deal').on('click', dealCard);
 
 
-function handleDropEvent( event, ui ) {
-  var draggable = ui.draggable;
-  draggable.remove();
-    
-}
-
-
-
-
-function removeCard(c)
-{
-
-    for (j=c; j <= numberOfCardsInDeck - 2; j++)
-    {
-        cardsInDeck[j] = cardsInDeck[j+1];
-    }
-    numberOfCardsInDeck--;
-}
-     </script>
-  </body>
-
+    </script>
+</body>
 </html>
+
+
