@@ -2,22 +2,25 @@
 <html lang= "en">
 <head>
   <meta charset="UTF-8">
-  <title>Animation</title>
+   <title>Animation</title>
    <style>
     
-  body { font-family: Arial, sans-serif;   
-          line-height:1.6; 
-         margin: 0;
-      padding: 0;
-       background-color: #f7f7f8}
+  body { 
+    font-family: Arial, sans-serif;   
+    line-height:1.6; 
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f8
+  }
     
 
 main {
       max-width: 800px;
       margin: 30px auto;
       padding: 0 20px;
- padding: 0 20px;  border-radius: 8px;  
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      padding: 0 20px;  
+      border-radius: 8px;  
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
   </style>
@@ -27,9 +30,105 @@ main {
 <body>
   <main>
     <p> Click the moon to change the color. </p>
+            <div id="position"></div>
+
+    <canvas id="myCanvas" width="600" height="400"
+        style="background-color: black;">
     
       </main>
-    
+  
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+
+        var starX = 100;
+        var starY = 100;
+        var starRadius = 10;
+        var moveX = 1.5;
+        var moveY = 1.5;
+        var moonX = 500;
+        var moonY = 90;
+        var moonRadius = 45;
+        var moonColor = "white";
+
+
+        function moon(c) {
+            c.beginPath();
+            c.arc(moonX, moonY, moonRadius, 0, Math.PI * 2);
+            c.fillStyle = moonColor;
+            c.fill();
+        }
+
+        function star(c) {
+            c.beginPath();
+            c.arc(starX, starY, starRadius, 0, Math.PI * 2);
+            c.fillStyle = "white";
+            c.fill();
+        }
+
+
+        function move() {
+
+         
+            if (starX + starRadius >= canvas.width || starX - starRadius <= 0) {
+                moveX *= -1;
+            }
+
+       
+            if (starY + starRadius >= canvas.height || starY - starRadius <= 0) {
+                moveY *= -1;
+            }
+
+           
+            starX += moveX;
+            starY += moveY;
+
+         
+            context.clearRect(
+                0, 0, canvas.width, canvas.height
+            );
+
+         
+            moon(context);
+            star(context);
+
+             requestAnimationFrame(move);
+           
+        }
+
+   
+        canvas.addEventListener("click", function (event) {
+
+            var rect = canvas.getBoundingClientRect();
+
+            var mouseX =
+                (event.clientX - rect.left) *
+                canvas.width / rect.width;
+
+            var mouseY =
+                (event.clientY - rect.top) *
+                canvas.height / rect.height;
+
+            var distance = Math.sqrt(
+                Math.pow(mouseX - moonX, 2) +
+                Math.pow(mouseY - moonY, 2)
+            );
+
+            if (distance <= moonRadius) {
+                if (moonColor == "white") {
+                    moonColor = "yellow";
+                } else {
+                    moonColor = "white";
+                }
+            }
+        });
+
+       
+       
+        setTimeout(function () { move();}, 1500);
+
+    </script>
+
   </body>
 
 </html>
