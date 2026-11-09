@@ -1,37 +1,889 @@
 <!DOCTYPE html>
-<html lang= "en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Advising Tool</title>
-   <style>
-    
-  body { font-family: Arial, sans-serif;   
-          line-height:1.6; 
-         margin: 0;
-      padding: 0;
-       background-color: #f7f7f8}
-    
-    h1 { 
-      color:#232326; text-align: center; margin-top: 20px;
-      }
-    
+<title>Advising Tool</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f8;
+}
+
+h1 {
+    color: #232326;
+    text-align: center;
+    margin-top: 20px;
+}
 
 main {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 0 20px;
-    border-radius: 8px;  
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+    border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+td {
+    width: 33%;
+    vertical-align: top;
+    padding: 10px;
+}
+
+.completed, .all, .semester {
+    border: 2px solid black;
+    padding: 10px;
+    min-height: 200px;
+    background: white;
+}
+
+.course {
+    background: lightgreen;
+    border: 1px solid green;
+    padding: 10px;
+    margin: 5px;
+    cursor: grab;
+}
+
+.notAvailable {
+    background: lightyellow;
+    border: 1px solid orange;
+    padding: 10px;
+    margin: 5px;
+}
+
+button {
+    padding: 8px;
+    margin: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+<h1>Degree Advising Tool</h1>
+
+<p>Green = Available to Take</p>
+<p>Yellow = Prerequisites Not Met </p>
+
+<select id="specialization" onchange="createList()">
+    <option value="Water">Water</option>
+    <option value="Wetlands">Wetlands/Bio-Ecological</option>
+</select>
+
+<button onclick="whatCanITake()">What Can I Take?</button>
+<button onclick="undo()">Undo</button>
+
+<table>
+
+<tr>
+    <th>Completed</th>
+    <th>Courses</th>
+    <th>Planner</th>
+</tr>
+
+<tr>
+
+<td>
+
+<div class="completed" id="completed"
+ondragover="allowDrop(event)"
+ondrop="dropCourse(event,'completed')">
+
+    <div id="completedList">Completed</div>
+    <div id="completedHours">Hours: 0</div>
+
+</div>
+
+</td>
+
+<td>
+
+<div class="all" id="all"></div>
+
+</td>
+
+<td>
+
+<div class="semester" id="semester1"
+ondragover="allowDrop(event)"
+ondrop="dropCourse(event,'semester1')">
+
+    <h3>Semester 1 - Fall</h3>
+    <div id="semester1List"></div>
+    <div id="semester1Hours">Hours: 0</div>
+
+</div>
+
+<br>
+
+<div class="semester" id="semester2"
+ondragover="allowDrop(event)"
+ondrop="dropCourse(event,'semester2')">
+
+    <h3>Semester 2 - Spring</h3>
+    <div id="semester2List"></div>
+    <div id="semester2Hours">Hours: 0</div>
+
+</div>
+
+<br>
+
+<div class="semester" id="summer"
+ondragover="allowDrop(event)"
+ondrop="dropCourse(event,'summer')">
+
+    <h3>Summer</h3>
+    <div id="summerList"></div>
+    <div id="summerHours">Hours: 0</div>
+
+</div>
+
+<br>
+
+<div class="semester" id="semester3"
+ondragover="allowDrop(event)"
+ondrop="dropCourse(event,'semester3')">
+
+    <h3>Semester 3 - Fall</h3>
+    <div id="semester3List"></div>
+    <div id="semester3Hours">Hours: 0</div>
+
+</div>
+
+<br>
+
+<div class="semester" id="semester4"
+ondragover="allowDrop(event)"
+ondrop="dropCourse(event,'semester4')">
+
+    <h3>Semester 4 - Spring</h3>
+    <div id="semester4List"></div>
+    <div id="semester4Hours">Hours: 0</div>
+
+</div>
+
+</td>
+
+</tr>
+
+</table>
+
+<div id="results"></div>
+<script>
+
+var courselist = `[
+{
+    "code": "ENC1101",
+    "name": "Introduction to Composition",
+    "hours": 3,
+    "group": "General Education",
+    "prerequisites": [],
+    "offered": ["Fall, Spring, Summer"],
+    "details": "Required Communications course, Lab Fee: 62.00"
+},
+{
+    "code": "MAC1105",
+    "name": "College Algebra",
+    "hours": 3,
+    "group": "General Education",
+    "prerequisites": [],
+    "offered": ["Fall", "Spring", "Summer"],
+    "details": "Required Mathematics course."
+},
+{
+    "code": "OCE1001",
+    "name": "Introduction to Oceanography",
+    "hours": 3,
+    "group": "General Education",
+    "prerequisites": [],
+    "offered": ["Fall", "Spring", "Summer"],
+    "details": "Required Natural Sciences course, Lab Fee: 5.00"
+},
+{
+    "code": "HUM2020",
+    "name": "Introduction to Humanities",
+    "hours": 3,
+    "group": "General Education",
+    "prerequisites": [
+        {
+            "type": "AND",
+            "courses": ["ENC1101"]
+        }
+    ],
+    "offered": ["Fall","Spring","Summer"],
+    "details": "Recommended Humanities course."
+},
+{
+    "code": "POS2041",
+    "name": "American Federal Government",
+    "hours": 3,
+    "group": "General Education",
+    "prerequisites": [],
+    "offered": ["Fall", "Spring", "Summer"],
+    "details": "POS2041 satisfies the Civic Literacy Competency graduation requirement."
+},
+{
+    "code": "CHM1025C",
+    "name": "Introduction to Chemistry and Lab",
+    "hours": 4,
+    "group": "Program",
+    "prerequisites": [],
+    "offered": ["Fall","Spring","Summer"],
+    "details": "Lab Fee: $56.06"
+},
+{
+    "code": "PHY1032",
+    "name": "Energy and its Environmental Effects",
+    "hours": 3,
+    "group": "Program",
+    "prerequisites": [
+        {
+            "type": "AND",
+            "courses": ["EVR2001"]
+        }
+    ],
+    "offered": ["Fall","Spring"],
+    "details": "Program requirement."
+},
+{
+    "code": "STA2023",
+    "name": "Elementary Statistics",
+    "hours": 3,
+    "group": "Program",
+    "prerequisites": [],
+    "offered": ["Fall", "Spring", "Summer"],
+    "details": "Program requirement."
+},
+{
+    "code": "SLS1127",
+    "name": "Faculty Peer Mentoring Experience",
+    "hours": 0,
+    "group": "Program",
+    "prerequisites": [],
+    "offered": ["Fall"],
+    "details": "Required zero-credit course."
+},
+{
+    "code": "EVR2001",
+    "name": "Introduction to Environmental Science",
+    "hours": 3,
+    "group": "Program",
+    "prerequisites": [],
+    "offered": ["Fall","Spring","Summer"],
+    "details": "Program requirement."
+},
+{
+    "code": "EVR2001L",
+    "name": "Introduction to Environmental Science Lab",
+    "hours": 1,
+    "group": "Program",
+    "prerequisites": [],
+    "offered": ["Spring"],
+    "details": "Lab Fee: $88.23"
+},
+{
+    "code": "EVR2647",
+    "name": "Environmental Site Assessment",
+    "hours": 3,
+    "group": "Program",
+    "prerequisites": [
+        {
+            "type": "AND",
+            "courses": ["CHM1025C", "EVR2001", "EVR2001L", "GIS2040C"]
+        }
+    ],
+    "offered": ["Summer","Fall"],
+    "details": "Program requirement."
+},
+{
+    "code": "EVR2861",
+    "name": "Environmental Policy and Law",
+    "hours": 3,
+    "group": "Program",
+    "prerequisites": [
+        {
+            "type": "AND",
+            "courses": ["ENC1101", "EVR2001"]
+        }
+    ],
+    "offered": ["Fall"],
+    "details": "Program requirement."
+},
+{
+    "code": "EVR2943",
+    "name": "Environmental Internship",
+    "hours": 3,
+    "group": "Program",
+    "prerequisites": [],
+    "offered": ["Spring", "Summer"],
+    "repeatable": 2,
+    "details": "Repeatable once for credit."
+},
+{
+    "code": "GIS2040C",
+    "name": "Geographic Information Systems and Lab",
+    "hours": 3,
+    "group": "Program",
+    "prerequisites": [],
+    "offered": ["Spring"],
+    "details": "Lab Fee: $25.00"
+},
+{
+    "code": "SWS2000C",
+    "name": "Introduction to Soil Science and Lab",
+    "hours": 4,
+    "group": "Program",
+    "prerequisites": [
+        {
+            "type": "AND",
+            "courses": ["CHM1025C"]
+        }
+    ],
+    "offered": ["Fall"],
+    "details": "Lab Fee: $39.40"
+}
+]`;
+
+var courses = JSON.parse(courselist);
+
+var specialization = `{
+    "Water": [
+        {
+            "code": "BSC1005",
+            "name": "Survey of Biological Sciences (For Non-Science Majors)",
+            "hours": 3,
+            "prerequisites": [],
+            "offered": ["Fall","Spring","Summer"],
+            "details": ""
+        },
+        {
+            "code": "SWS2007",
+            "name": "The World of Water",
+            "hours": 3,
+            "prerequisites": [],
+            "offered": ["Fall","Spring"],
+            "details": ""
+        },
+        {
+            "code": "EVS2005C",
+            "name": "Treatment of Water and Wastewater and Lab",
+            "hours": 3,
+            "prerequisites": [
+                {
+                    "type": "AND",
+                    "courses": ["CHM1025C", "EVS2026C", "MAC1105", "SWS2007"]
+                }
+            ],
+            "offered": ["Summer"],
+            "details": "Lab Fee: $51.58"
+        },
+        {
+            "code": "EVS2026C",
+            "name": "Chemistry and Biology of Natural Waters and Laboratory",
+            "hours": 4,
+            "prerequisites": [
+                {
+                    "type": "AND",
+                    "courses": ["OCE1001", "BSC1005", "CHM1025C"]
+                }
+            ],
+            "offered": ["Spring"],
+            "details": "Lab Fee: $90.86"
+        },
+        {
+            "code": "EVR2630",
+            "name": "Hazardous Material Risk Analysis",
+            "hours": 3,
+            "prerequisites": [
+                {
+                    "type": "AND",
+                    "courses": ["CHM1025C", "EVR2001", "EVR2001L", "STA2023"]
+                }
+            ],
+            "offered": ["Spring"],
+            "details": ""
+        }
+    ],
+
+    "Wetlands": [
+        {
+            "code": "BOT2150",
+            "name": "Native Plants of Central Florida",
+            "hours": 3,
+            "prerequisites": [
+                {
+                    "type": "AND",
+                    "courses": ["BSC1010C"]
+                }
+            ],
+            "offered": ["Spring"],
+            "details": "Lab Fee: $48.76"
+        },
+        {
+            "code": "BSC1010C",
+            "name": "General Biology I and Lab",
+            "hours": 4,
+            "prerequisites": [],
+            "offered": ["Fall","Spring","Summer"],
+            "details": "Lab Fee: $26.83"
+        },
+        {
+            "code": "BSC1011C",
+            "name": "General Biology II and Lab",
+            "hours": 4,
+            "prerequisites": [
+                {
+                    "type": "AND",
+                    "courses": ["BSC1010C"]
+                }
+            ],
+            "offered": ["Fall","Spring","Summer"],
+            "details": "Lab Fee: $43.49"
+        },
+        {
+            "code": "OCE1001L",
+            "name": "Introduction to Oceanography Lab",
+            "hours": 1,
+            "prerequisites": [],
+            "offered": ["Spring"],
+            "details": "Lab Fee: $72.83"
+        },
+        {
+            "code": "PCB2033C",
+            "name": "Introduction to Ecology and Lab",
+            "hours": 4,
+            "prerequisites": [
+                {
+                    "type": "AND",
+                    "courses": ["BSC1010C", "MAC1105", "STA2023"]
+                }
+            ],
+            "offered": ["Fall"],
+            "details": "Lab Fee: $42.57"
+        }
+    ]
+}`;
+
+var specializations = JSON.parse(specialization);
+
+var completed = [];
+
+var semester1 = [];
+var semester2 = [];
+var summer = [];
+var semester3 = [];
+var semester4 = [];
+
+var undoList = [];
+
+var selectedCourse = "";
+
+var destinationTermMap = {
+    "semester1": "Fall",
+    "semester2": "Spring",
+    "summer": "Summer",
+    "semester3": "Fall",
+    "semester4": "Spring"
+};
+
+function isOfferedInTerm(course, term) {
+
+    if (!course.offered || course.offered.length === 0) {
+        return false;
     }
 
-  </style>
-</head>
-   <body>
-  <main>
-  <h1>Degree Advising Tool</h1>
+    var availableTerms = [];
 
-    <p> Interactive degree planner advising tool.  </p>
-      </main>
-  </body>
+    course.offered.forEach(function(item) {
 
+        var parts = item.split(",");
+
+        parts.forEach(function(p) {
+            availableTerms.push(p.trim().toLowerCase());
+        });
+
+    });
+
+    return availableTerms.includes(term.toLowerCase());
+}
+
+
+function prerequisitesMet(course, destination) {
+
+    if (!course.prerequisites ||
+        course.prerequisites.length === 0) {
+        return true;
+    }
+
+    var semesterOrder = {
+        semester1: 1,
+        semester2: 2,
+        summer: 3,
+        semester3: 4,
+        semester4: 5
+    };
+
+    var destinationOrder = semesterOrder[destination];
+
+    var takenCourses = completed.slice();
+
+    if (destinationOrder) {
+
+        if (destinationOrder > 1) {
+            takenCourses = takenCourses.concat(semester1);
+        }
+
+        if (destinationOrder > 2) {
+            takenCourses = takenCourses.concat(semester2);
+        }
+
+        if (destinationOrder > 3) {
+            takenCourses = takenCourses.concat(summer);
+        }
+
+        if (destinationOrder > 4) {
+            takenCourses = takenCourses.concat(semester3);
+        }
+
+    } else {
+
+        takenCourses = takenCourses.concat(
+            semester1,
+            semester2,
+            summer,
+            semester3,
+            semester4
+        );
+
+    }
+
+    for (var i = 0; i < course.prerequisites.length; i++) {
+
+        var rule = course.prerequisites[i];
+
+        if (rule.type == "AND") {
+
+            var allFound = rule.courses.every(function(code) {
+
+                return takenCourses.some(function(c) {
+                    return c.code.trim() == code.trim();
+                });
+
+            });
+
+            if (!allFound) {
+                return false;
+            }
+        }
+
+        if (rule.type == "OR") {
+
+            var oneFound = rule.courses.some(function(code) {
+
+                return takenCourses.some(function(c) {
+                    return c.code.trim() == code.trim();
+                });
+
+            });
+
+            if (!oneFound) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+
+function createList() {
+
+    document.getElementById("all").innerHTML = "";
+
+    var track = document.getElementById("specialization").value;
+
+    var allCourses = courses.concat(
+        specializations[track].map(function(c) {
+
+            return {
+                ...c,
+                group: "Specialization",
+                prerequisites: c.prerequisites || [],
+                details: c.details || "Specialization course."
+            };
+
+        })
+    );
+
+    allCourses.forEach(function(course) {
+
+        if (
+            completed.some(c => c.code == course.code) ||
+            semester1.some(c => c.code == course.code) ||
+            semester2.some(c => c.code == course.code) ||
+            summer.some(c => c.code == course.code) ||
+            semester3.some(c => c.code == course.code) ||
+            semester4.some(c => c.code == course.code)
+        ) {
+            return;
+        }
+
+        var met = prerequisitesMet(course);
+        var div = document.createElement("div");
+
+        div.innerHTML =
+            "<b>" + course.code + "</b><br>" +
+            course.name + "<br>" +
+            course.hours + " Credits<br>" +
+            "Offered: " +
+            (course.offered && course.offered.length
+                ? course.offered.join(", ")
+                : "Not yet confirmed") +
+            "<br>" +
+            course.details;
+
+        div.className = met ? "course" : "notAvailable";
+
+        div.draggable = met;
+
+        div.id = course.code;
+
+        div.ondragstart = function(event) {
+            selectedCourse = course.code;
+        };
+
+        document.getElementById("all").appendChild(div);
+
+    });
+
+}
+
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+
+function dropCourse(event, destination) {
+
+    event.preventDefault();
+
+    var course = findCourse(selectedCourse);
+
+    if (!course) {
+        return;
+    }
+
+    if (destination == "completed") {
+
+        undoList.push({
+            course: course,
+            destination: destination
+        });
+
+        completed.push(course);
+
+        updateDisplay();
+        return;
+    }
+
+    var term = destinationTermMap[destination];
+
+    if (!isOfferedInTerm(course, term)) {
+
+        alert(course.code + " is not being offered in " + term + ".");
+
+        return;
+    }
+
+    if (!prerequisitesMet(course, destination)) {
+
+        alert("Prerequisites for " + course.code +
+              " have not been completed");
+
+        return;
+    }
+
+    undoList.push({
+        course: course,
+        destination: destination
+    });
+
+    if (destination == "semester1") {
+        semester1.push(course);
+    }
+
+    if (destination == "semester2") {
+        semester2.push(course);
+    }
+
+    if (destination == "summer") {
+        summer.push(course);
+    }
+
+    if (destination == "semester3") {
+        semester3.push(course);
+    }
+
+    if (destination == "semester4") {
+        semester4.push(course);
+    }
+
+    updateDisplay();
+
+}
+
+
+function findCourse(code) {
+
+    var track = document.getElementById("specialization").value;
+
+    var list = courses.concat(specializations[track]);
+
+    return list.find(function(c) {
+        return c.code == code;
+    });
+
+}
+function updateDisplay() {
+
+    document.getElementById("completedList").innerHTML =
+        "Completed Courses:<br>" +
+        completed.map(c => c.code + " - " + c.name).join("<br>");
+
+    document.getElementById("completedHours").innerHTML =
+        "Hours: " +
+        completed.reduce((sum, c) => sum + c.hours, 0);
+
+
+    document.getElementById("semester1List").innerHTML =
+        semester1.map(c => c.code + " - " + c.name).join("<br>");
+
+    document.getElementById("semester2List").innerHTML =
+        semester2.map(c => c.code + " - " + c.name).join("<br>");
+
+    document.getElementById("summerList").innerHTML =
+        summer.map(c => c.code + " - " + c.name).join("<br>");
+
+    document.getElementById("semester3List").innerHTML =
+        semester3.map(c => c.code + " - " + c.name).join("<br>");
+
+    document.getElementById("semester4List").innerHTML =
+        semester4.map(c => c.code + " - " + c.name).join("<br>");
+
+
+    document.getElementById("semester1Hours").innerHTML =
+        "Hours: " + semester1.reduce((sum, c) => sum + c.hours, 0);
+
+    document.getElementById("semester2Hours").innerHTML =
+        "Hours: " + semester2.reduce((sum, c) => sum + c.hours, 0);
+
+    document.getElementById("summerHours").innerHTML =
+        "Hours: " + summer.reduce((sum, c) => sum + c.hours, 0);
+
+    document.getElementById("semester3Hours").innerHTML =
+        "Hours: " + semester3.reduce((sum, c) => sum + c.hours, 0);
+
+    document.getElementById("semester4Hours").innerHTML =
+        "Hours: " + semester4.reduce((sum, c) => sum + c.hours, 0);
+
+    createList();
+
+}
+
+
+function whatCanITake() {
+
+    var available = courses.concat(
+        specializations[
+            document.getElementById("specialization").value
+        ]
+    );
+
+    var result = "<h2>Courses You Can Take</h2>";
+
+    available.forEach(function(course) {
+
+        if (
+            prerequisitesMet(course) &&
+            !completed.some(c => c.code == course.code) &&
+            !semester1.some(c => c.code == course.code) &&
+            !semester2.some(c => c.code == course.code) &&
+            !summer.some(c => c.code == course.code) &&
+            !semester3.some(c => c.code == course.code) &&
+            !semester4.some(c => c.code == course.code)
+        ) {
+
+            var availableTerms = course.offered || [];
+
+            if (availableTerms.length > 0) {
+
+                result +=
+                    course.code + " - " +
+                    course.name +
+                    " (Offered: " +
+                    availableTerms.join(", ") +
+                    ")<br>";
+
+            }
+
+        }
+
+    });
+
+    document.getElementById("results").innerHTML = result;
+
+}
+
+
+function undo() {
+
+    if (undoList.length == 0) {
+        return;
+    }
+
+    var last = undoList.pop();
+
+    if (last.destination == "completed") {
+        completed.pop();
+    }
+
+    if (last.destination == "semester1") {
+        semester1.pop();
+    }
+
+    if (last.destination == "semester2") {
+        semester2.pop();
+    }
+
+    if (last.destination == "summer") {
+        summer.pop();
+    }
+
+    if (last.destination == "semester3") {
+        semester3.pop();
+    }
+
+    if (last.destination == "semester4") {
+        semester4.pop();
+    }
+
+    updateDisplay();
+
+}
+
+
+createList();
+
+</script>
+
+</main>
+
+</body>
 </html>
