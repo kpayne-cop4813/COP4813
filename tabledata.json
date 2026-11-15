@@ -1,11 +1,48 @@
 {
   "content management systems": [
     {
-"name": 
+"name": Wordpress,
+"support":
+"technology": PHP and MariaDB,
+"capabilities": User Management, Media Management,Full Standards Compliance,Extend with Plugins,Search Engine Optimized,
+"limitations": security,
+"examples": 
+  ]
+}
+    {
+"name": Shopify,
+"support":
+"technology": Liquid, Shopify’s proprietary coding language,  completely cloud-based and hosted,
+"capabilities":
+"limitations": cost,
+"examples": https://www.brooklinen.com/
+  ]
+}
+    {
+"name": Weebly,
 "support":
 "technology":
 "capabilities":
 "limitations":
 "examples": 
   ]
+}
+    {
+"name": Wix,
+"support":
+"technology":
+"capabilities":
+"limitations":
+"examples": 
+  ]
+}
+    {
+"name": Squarespace
+"support":
+"technology":
+"capabilities":
+"limitations":
+"examples": 
+  ]
+}
 }
