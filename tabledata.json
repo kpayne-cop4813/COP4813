@@ -3,7 +3,7 @@
     {
       "name": "Wordpress",
       "support": "Open Source, Supported by most hosting companies",
-      "technology": "PHP/MySQL and MariaDB", "wide variety of plug ins offered",
+      "technology": "PHP/MySQL and MariaDB, wide variety of plug ins offered",
       "capabilities": "User Management, Media Management, Full Standards Compliance, Extend with Plugins, Search Engine Optimized",
       "limitations": "Security",
       "examples": "https://wordpress.org/, https://techcrunch.com/"
