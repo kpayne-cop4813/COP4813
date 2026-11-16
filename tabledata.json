@@ -28,9 +28,9 @@
       "name": "Wix",
       "support": "Commercially hosted software-as-a-service (SaaS)",
       "technology": "Cloud, drag and drop",
-      "capabilities": "Offers a free plan",
+      "capabilities": "Offers a free plan, custom code, backend logic and integrations ",
       "limitations": "Limited customization, limited plug ins",
-      "examples": "https://www.wix.com"
+      "examples": "https://www.lemontreeandco.com/"
     },
     {
       "name": "Squarespace",
@@ -38,7 +38,7 @@
       "technology": "Cloud",
       "capabilities": "Custom CSS",
       "limitations": "SEO limitations ",
-      "examples": "https://www.squarespace.com"
+      "examples": "https://honeybelle.squarespace.com/"
     }
   ]
 }
