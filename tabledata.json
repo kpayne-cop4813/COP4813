@@ -3,14 +3,14 @@
     {
       "name": "Wordpress",
       "support": "Open Source, Supported by most hosting companies",
-      "technology": "PHP/MySQL and MariaDB",
+      "technology": "PHP/MySQL and MariaDB", wide variety of plug ins offered",
       "capabilities": "User Management, Media Management, Full Standards Compliance, Extend with Plugins, Search Engine Optimized",
       "limitations": "Security",
-      "examples": "https://wordpress.org/"
+      "examples": "https://wordpress.org/, https://techcrunch.com/"
     },
     {
       "name": "Shopify",
-      "support": "Commercially hosted",
+      "support": "Commercially hosted software-as-a-service (SaaS)",
       "technology": "Liquid, Shopify's proprietary coding language, completely cloud-based and hosted",
       "capabilities": "Includes secure commerce hosting",
       "limitations": "Cost",
@@ -18,26 +18,26 @@
     },
     {
       "name": "Weebly",
-      "support": "Commercially hosted",
+      "support": "Commercially hosted software-as-a-service (SaaS), part of the Square product suite",
       "technology": "Cloud, JavaScript drag and drop",
-      "capabilities": "",
-      "limitations": "",
-      "examples": ""
+      "capabilities": "eCommerce",
+      "limitations": "only avaiable in certain regions",
+      "examples": "https://www.weebly.com/"
     },
     {
       "name": "Wix",
-      "support": "Commercially hosted",
-      "technology": "Cloud",
+      "support": "Commercially hosted software-as-a-service (SaaS)",
+      "technology": "Cloud, drag and drop",
       "capabilities": "Offers a free plan",
-      "limitations": "Limited customization",
+      "limitations": "Limited customization, limited plug ins",
       "examples": "https://www.wix.com"
     },
     {
       "name": "Squarespace",
-      "support": "Commercially hosted",
+      "support": "Commercially hosted software-as-a-service (SaaS)",
       "technology": "Cloud",
       "capabilities": "Custom CSS",
-      "limitations": "",
+      "limitations": "SEO limitations ",
       "examples": "https://www.squarespace.com"
     }
   ]
