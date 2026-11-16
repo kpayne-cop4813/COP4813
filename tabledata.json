@@ -1,44 +1,44 @@
 {
   "content management systems": [
     {
-"name": Wordpress,
-"support":
-"technology": PHP and MariaDB,
-"capabilities": User Management, Media Management,Full Standards Compliance,Extend with Plugins,Search Engine Optimized,
-"limitations": security,
-"examples": 
+"name": "Wordpress",
+"support": "Open Source, Supported by most hosting companies"
+"technology": "PHP/MySQL and MariaDB",
+"capabilities": "User Management, Media Management,Full Standards Compliance,Extend with Plugins,Search Engine Optimized",
+"limitations": "security",
+"examples": "https://wordpress.org/"
   ]
 }
     {
-"name": Shopify,
-"support":
-"technology": Liquid, Shopify’s proprietary coding language,  completely cloud-based and hosted,
-"capabilities":
-"limitations": cost,
-"examples": https://www.brooklinen.com/
+"name": "Shopify",
+"support": "commerically hosted",
+"technology": "Liquid, Shopify’s proprietary coding language,  completely cloud-based and hosted",
+"capabilities": "includes secure commerce hosting",
+"limitations": "cost",
+"examples": "https://www.brooklinen.com/"
   ]
 }
     {
-"name": Weebly,
-"support":
-"technology":
-"capabilities":
-"limitations":
-"examples": 
-  ]
-}
-    {
-"name": Wix,
-"support":
-"technology":
+"name": "Weebly",
+"support":  "commerically hosted",
+"technology": "cloud,JavaScript drag and drop"
 "capabilities":
 "limitations":
 "examples": 
   ]
 }
     {
-"name": Squarespace
-"support":
+"name": "Wix",
+"support": "commerically hosted",
+"technology":
+"capabilities": "offers a free plan",
+"limitations":
+"examples": 
+  ]
+}
+    {
+"name": "Squarespace",
+"support": "commerically hosted",
 "technology":
 "capabilities":
 "limitations":
