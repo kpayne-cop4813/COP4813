@@ -40,6 +40,15 @@
         background-color: #2e7d32;
         color: white;
     }
+
+    td ul {
+        padding-left: 20px;
+        margin: 5px 0;
+    }
+
+    td li {
+        margin-bottom: 5px;
+    }
 </style>
 </head>
 
@@ -66,8 +75,22 @@
     </table>
 
     <script>
+
+        function createBulletList(items) {
+            return `
+                <ul>
+                    ${items.map(item => `<li>${item}</li>`).join("")}
+                </ul>
+            `;
+        }
+
         fetch("tabledata.json")
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Could not load JSON file");
+                }
+                return response.json();
+            })
             .then(data => {
 
                 const table = document.getElementById("cmsTable");
@@ -78,11 +101,11 @@
 
                     row.innerHTML = `
                         <td>${contentdata.name}</td>
-                        <td>${contentdata.support}</td>
-                        <td>${contentdata.technology}</td>
-                        <td>${contentdata.capabilities}</td>
-                        <td>${contentdata.limitations}</td>
-                        <td>${contentdata.examples}</td>
+                        <td>${createBulletList(contentdata.support)}</td>
+                        <td>${createBulletList(contentdata.technology)}</td>
+                        <td>${createBulletList(contentdata.capabilities)}</td>
+                        <td>${createBulletList(contentdata.limitations)}</td>
+                        <td>${createBulletList(contentdata.examples)}</td>
                     `;
 
                     table.appendChild(row);
@@ -91,10 +114,13 @@
             .catch(error => {
                 console.error("Error loading JSON data:", error);
             });
+
     </script>
 
 </div>
+
 <p>Sources:</p>
+
 <ul>
     <li>
         <a href="https://wordpress.org/about/features/">
@@ -102,20 +128,27 @@
         </a>
     </li>
     <li>
-        <a href="https://wordpress.org/showcase/techcrunch/" >
+        <a href="https://wordpress.org/showcase/techcrunch/">
             WordPress Showcase for TechCrunch
         </a>
     </li>
-     <li>
+    <li>
         <a href="https://www.wix.com/blog/what-is-wix">
-            Wix 
+            Wix
         </a>
     </li>
-         <li>
+    <li>
         <a href="https://www.wix.com/explore/websites/site/lemontree-%2B-co">
             Wix Example
         </a>
     </li>
+    <li>
+        <a href="https://www.weebly.com/features">
+            Weebly
+        </a>
+    </li>
 </ul>
+
 </body>
 </html>
+
