@@ -1,44 +1,121 @@
+
 {
   "content management systems": [
     {
       "name": "Wordpress",
-      "support": "Open Source, Supported by most hosting companies",
-      "technology": "PHP/MySQL and MariaDB, wide variety of plug ins offered",
-      "capabilities": "User Management, Media Management, Full Standards Compliance, Extend with Plugins, Search Engine Optimized",
-      "limitations": "Security",
-      "examples": "https://wordpress.org/, https://techcrunch.com/"
+      "support": [
+        "Open Source",
+        "Supported by most hosting companies"
+      ],
+      "technology": [
+        "PHP/MySQL and MariaDB",
+        "Wide variety of plug ins offered"
+      ],
+      "capabilities": [
+        "User Management",
+        "Media Management",
+        "Full Standards Compliance",
+        "Extend with Plugins",
+        "Search Engine Optimized"
+      ],
+      "limitations": [
+        "Security",
+        "plug ins can cause issues"
+      ],
+      "examples": [
+        "https://wordpress.org/",
+        "https://techcrunch.com/"
+      ]
     },
     {
       "name": "Shopify",
-      "support": "Commercially hosted software-as-a-service (SaaS)",
-      "technology": "Liquid, Shopify's proprietary coding language, completely cloud-based and hosted",
-      "capabilities": "Includes secure commerce hosting",
-      "limitations": "Cost",
-      "examples": "https://www.brooklinen.com/"
+      "support": [
+        "Commercially hosted software-as-a-service (SaaS)"
+      ],
+      "technology": [
+        "Liquid, Shopify's proprietary coding language",
+        "Completely cloud-based and hosted"
+      ],
+      "capabilities": [
+        "Includes secure commerce hosting"
+      ],
+      "limitations": [
+        "Cost"
+      ],
+      "examples": [
+        "https://www.brooklinen.com/"
+      ]
     },
     {
       "name": "Weebly",
-      "support": "Commercially hosted software-as-a-service (SaaS), part of the Square product suite",
-      "technology": "Cloud, JavaScript drag and drop",
-      "capabilities": "eCommerce",
-      "limitations": "only avaiable in certain regions",
-      "examples": "https://www.weebly.com/"
+      "support": [
+        "Commercially hosted software-as-a-service (SaaS)",
+        "Part of the Square product suite"
+      ],
+      "technology": [
+        "Cloud",
+        "JavaScript drag and drop"
+      ],
+      "capabilities": [
+        "eCommerce",
+        "drag and drop tools",
+        "mobil websites"
+      ],
+      "limitations": [
+        "only avaiable in certain regions"
+      ],
+      "examples": [
+        "https://www.douksnow.com/"
+      ]
     },
     {
       "name": "Wix",
-      "support": "Commercially hosted software-as-a-service (SaaS)",
-      "technology": "Cloud, drag and drop",
-      "capabilities": "Offers a free plan, custom code, backend logic and integrations ",
-      "limitations": "Limited customization, limited plug ins",
-      "examples": "https://www.lemontreeandco.com/"
+      "support": [
+        "Commercially hosted software-as-a-service (SaaS)"
+      ],
+      "technology": [
+        "Cloud",
+        "TypeScript",
+        "JavaScript",
+        "drag and drop HTML5 canvas editor"
+      ],
+      "capabilities": [
+        "Offers a free plan",
+        "Developers can add custom code",
+        "backend logic and integrations with Velo by Wix and Wix APIs"
+      ],
+      "limitations": [
+        "Limited customization",
+        "limited plug ins",
+        "No Template Switching",
+        "Some features are only available in certain countries",
+        "Websites built elsewhere can't be imported into the Wix editors"
+      ],
+      "examples": [
+        "https://www.lemontreeandco.com/"
+      ]
     },
     {
       "name": "Squarespace",
-      "support": "Commercially hosted software-as-a-service (SaaS)",
-      "technology": "Cloud",
-      "capabilities": "Custom CSS",
-      "limitations": "SEO limitations ",
-      "examples": "https://honeybelle.squarespace.com/"
+      "support": [
+        "Commercially hosted software-as-a-service (SaaS)"
+      ],
+      "technology": [
+        "Cloud",
+        "Java",
+        "Spring Boot",
+        "Gradle",
+        "Tyson (an internal Spring Boot framework)"
+      ],
+      "capabilities": [
+        "Custom CSS"
+      ],
+      "limitations": [
+        "SEO limitations"
+      ],
+      "examples": [
+        "https://honeybelle.squarespace.com/"
+      ]
     }
   ]
 }
