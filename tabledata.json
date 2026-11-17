@@ -59,10 +59,10 @@
       "capabilities": [
         "eCommerce",
         "drag and drop tools",
-        "mobil websites"
+        "mobile websites"
       ],
       "limitations": [
-        "only avaiable in certain regions"
+        "only avaiable in certain regions", "limited third party integrations"
       ],
       "examples": [
         "https://www.douksnow.com/"
@@ -108,10 +108,10 @@
         "Tyson (an internal Spring Boot framework)"
       ],
       "capabilities": [
-        "Custom CSS"
+        "Custom CSS", "built-in hosting  security, and updates","AI Visibility"
       ],
       "limitations": [
-        "SEO limitations"
+        "SEO limitations", "Limited Code Injection", "E‑commerce & Data Limits"
       ],
       "examples": [
         "https://honeybelle.squarespace.com/"
