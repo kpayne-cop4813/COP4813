@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flower Game</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f7f7f8;
+        }
+
+        #content {
+            margin: 20px auto;
+            width: 850px;
+        }
+
+        #cardPile, #cardSlots {
+            width: 800px;
+            min-height: 150px;
+            padding: 15px;
+            margin: 20px auto;
+            border: 2px solid black;
+            background-color: #f5f5f5;
+        }
+
+        .flower, .name {
+            display: inline-block;
+            width: 130px;
+            height: 140px;
+            margin: 8px;
+            padding: 5px;
+            border: 2px solid #999;
+            background-color: white;
+            vertical-align: top;
+        }
+
+        .flower img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .name {
+            line-height: 140px;
+            font-weight: bold;
+        }
+
+        .correct {
+            background-color: lightgreen;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+
+
+        #garden {
+            height: 250px;
+            width: 250px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        #stem {
+            position: absolute;
+            bottom: 55px;
+            left: 120px;
+            width: 10px;
+            height: 0;
+            background-color: green;
+            transition: height 1s;
+        }
+
+        #leaves {
+            display: none;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 35px;
+            height: 18px;
+            background-color: green;
+            border-radius: 100% 0;
+            bottom: 95px;
+        }
+
+        .leftLeaf {
+            left: 90px;
+            transform: rotate(20deg);
+        }
+
+        .rightLeaf {
+            left: 125px;
+            transform: rotate(70deg);
+        }
+
+        #bloom {
+            position: absolute;
+            top: 20px;
+            left: 85px;
+            width: 80px;
+            height: 80px;
+            transform: scale(0);
+            transition: transform 1s;
+        }
+
+        .petal {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background-color: pink;
+            border-radius: 50%;
+            top: 20px;
+            left: 25px;
+        }
+
+        .petal1 { transform: translateY(-22px); }
+        .petal2 { transform: rotate(72deg) translateY(-22px); }
+        .petal3 { transform: rotate(144deg) translateY(-22px); }
+        .petal4 { transform: rotate(216deg) translateY(-22px); }
+        .petal5 { transform: rotate(288deg) translateY(-22px); }
+
+        #center {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: yellow;
+            border-radius: 50%;
+            top: 27px;
+            left: 27px;
+            display: none;
+        }
+
+        #pot {
+            position: absolute;
+            bottom: 0;
+            left: 80px;
+            width: 90px;
+            height: 55px;
+            background-color: brown;
+            border-radius: 5px 5px 20px 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h1>Grow a Flower</h1>
+
+<p>Match each flower picture to its name to grow a flower!</p>
+
+<h3>Flower Growth: <span id="score">0</span> / 5</h3>
+
+
+
+<div id="garden">
+
+    <div id="stem"></div>
+
+    <div id="leaves">
+        <div class="leaf leftLeaf"></div>
+        <div class="leaf rightLeaf"></div>
+    </div>
+
+    <div id="bloom">
+        <div class="petal petal1"></div>
+        <div class="petal petal2"></div>
+        <div class="petal petal3"></div>
+        <div class="petal petal4"></div>
+        <div class="petal petal5"></div>
+        <div id="center"></div>
+    </div>
+
+    <div id="pot"></div>
+
+</div>
+
+<h3>Flower Pictures</h3>
+
+<div id="content">
+
+    <div id="cardPile"></div>
+
+    <h3>Match the Flower Names</h3>
+
+    <div id="cardSlots"></div>
+
+    <h2 id="message"></h2>
+
+    <button onclick="init()">Play Again</button>
+
+</div>
+
+<script>
+
+var flowers = [
+    { number: 1, name: "Rose", image: "rose.jpg" },
+    { number: 2, name: "Sunflower", image: "sun.jpg" },
+    { number: 3, name: "Morning Glory", image: "mg.jpg" },
+    { number: 4, name: "Milkweed", image: "milk.jpg" },
+    { number: 5, name: "Passionflower", image: "pf.jpg" }
+];
+
+var correctCards = 0;
+
+function init() {
+
+    correctCards = 0;
+
+    document.getElementById("score").innerHTML = 0;
+    document.getElementById("message").innerHTML = "";
+
+    document.getElementById("stem").style.height = "0";
+    document.getElementById("leaves").style.display = "none";
+    document.getElementById("bloom").style.transform = "scale(0)";
+    document.getElementById("center").style.display = "none";
+
+    var pile = document.getElementById("cardPile");
+    var slots = document.getElementById("cardSlots");
+
+    pile.innerHTML = "";
+    slots.innerHTML = "";
+
+
+
+    var shuffledNames = [...flowers].sort(function() {
+        return Math.random() - 0.5;
+    });
+
+    shuffledNames.forEach(function(flower) {
+
+        var slot = document.createElement("div");
+
+        slot.className = "name";
+        slot.dataset.number = flower.number;
+        slot.innerHTML = flower.name;
+
+        slot.ondragover = function(event) {
+            event.preventDefault();
+        };
+
+        slot.ondrop = function(event) {
+
+            event.preventDefault();
+
+            var cardNumber = event.dataTransfer.getData("text");
+            var card = document.getElementById(cardNumber);
+
+            if (!card || card.dataset.number !== slot.dataset.number) {
+                document.getElementById("message").innerHTML =
+                    "Try again!";
+                return;
+            }
+
+            slot.innerHTML = "";
+            slot.appendChild(card);
+
+            slot.classList.add("correct");
+
+            card.draggable = false;
+            slot.ondrop = null;
+
+            correctCards++;
+
+            document.getElementById("score").innerHTML = correctCards;
+            document.getElementById("message").innerHTML =
+                "Correct match!";
+
+            growFlower();
+
+            if (correctCards === flowers.length) {
+                document.getElementById("message").innerHTML =
+                    "Congratulations! Your flower has grown!";
+            }
+
+        };
+
+        slots.appendChild(slot);
+
+    });
+
+
+
+    var shuffledFlowers = [...flowers].sort(function() {
+        return Math.random() - 0.5;
+    });
+
+    shuffledFlowers.forEach(function(flower) {
+
+        var card = document.createElement("div");
+
+        card.className = "flower";
+        card.id = "card" + flower.number;
+        card.dataset.number = flower.number;
+        card.draggable = true;
+
+        var img = document.createElement("img");
+
+        img.src = flower.image;
+        img.alt = flower.name;
+
+        card.appendChild(img);
+
+        card.ondragstart = function(event) {
+            event.dataTransfer.setData("text", card.id);
+        };
+
+        pile.appendChild(card);
+
+    });
+
+}
+
+
+
+function growFlower() {
+
+    if (correctCards >= 1) {
+        document.getElementById("stem").style.height = "120px";
+    }
+
+    if (correctCards >= 2) {
+        document.getElementById("leaves").style.display = "block";
+    }
+
+    if (correctCards >= 3) {
+        document.getElementById("bloom").style.transform = "scale(0.7)";
+    }
+
+    if (correctCards >= 4) {
+        document.getElementById("bloom").style.transform = "scale(1)";
+    }
+
+    if (correctCards >= 5) {
+        document.getElementById("center").style.display = "block";
+    }
+
+}
+
+init();
+
+</script>
+
+</body>
+</html>
