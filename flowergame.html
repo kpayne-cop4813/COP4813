@@ -59,11 +59,27 @@
 
 
         #garden {
-            height: 250px;
-            width: 250px;
-            margin: 20px auto;
             position: relative;
+            width: 500px;
+            max-width: 95%;
+            height: 280px;
+            margin: 20px auto;
+            overflow: hidden;
+            background-color: #e5f0df;
+            border: 2px solid #a4b996;
+            border-radius: 8px;
         }
+
+        #ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 65px;
+            background-color: #8b6745;
+            border-top: 5px solid #6c914e;
+        }
+
+
 
         #stem {
             position: absolute;
@@ -135,15 +151,19 @@
             display: none;
         }
 
-        #pot {
+        .grass {
             position: absolute;
-            bottom: 0;
-            left: 80px;
-            width: 90px;
-            height: 55px;
-            background-color: brown;
-            border-radius: 5px 5px 20px 20px;
+            bottom: 60px;
+            width: 4px;
+            height: 15px;
+            background-color: #568b43;
+            border-radius: 5px;
         }
+
+        .grass1 { left: 50px; transform: rotate(-20deg); }
+        .grass2 { left: 80px; height: 20px; }
+        .grass3 { right: 65px; transform: rotate(20deg); }
+        .grass4 { right: 100px; height: 18px; }
 
     </style>
 </head>
@@ -158,7 +178,15 @@
 
 
 
+
 <div id="garden">
+
+    <div id="sky"></div>
+
+    <div class="grass grass1"></div>
+    <div class="grass grass2"></div>
+    <div class="grass grass3"></div>
+    <div class="grass grass4"></div>
 
     <div id="stem"></div>
 
@@ -176,7 +204,7 @@
         <div id="center"></div>
     </div>
 
-    <div id="pot"></div>
+    <div id="ground"></div>
 
 </div>
 
@@ -345,6 +373,3 @@ function growFlower() {
 init();
 
 </script>
-
-</body>
-</html>
